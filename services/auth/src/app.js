@@ -22,7 +22,7 @@ app.use(passport.authenticate('session'));
 
 app.get('/api/auth', (_req, res) =>
   res.status(200).json({
-    message: 'Auth service',
+    message: 'Auth service up!',
   })
 );
 

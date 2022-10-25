@@ -22,7 +22,7 @@ app.use(passport.authenticate('session'));
 
 app.get('/api/survey', (_req, res) =>
   res.status(200).json({
-    message: 'Survey service',
+    message: 'Survey service up!',
   })
 );
 
