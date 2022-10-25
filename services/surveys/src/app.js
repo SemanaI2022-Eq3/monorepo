@@ -20,6 +20,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('session'));
 
+app.get('/api/survey', (_req, res) =>
+  res.status(200).json({
+    message: 'Survey service',
+  })
+);
+
 app.use('/api/survey', ping);
 
 export default app;

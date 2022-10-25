@@ -20,6 +20,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('session'));
 
+app.get('/api/auth', (_req, res) =>
+  res.status(200).json({
+    message: 'Auth service',
+  })
+);
+
 app.use('/api', ping);
 app.use('/api/auth', auth);
 app.use('/api/user', user);
