@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import session from 'express-session';
 import passport from 'passport';
-import { ping } from './routes';
+import { ping , forms } from './routes';
 
 const app = express();
 
@@ -27,5 +27,6 @@ app.get('/api/survey', (_req, res) =>
 );
 
 app.use('/api/survey', ping);
+app.use('/api/survey',forms);
 
 export default app;

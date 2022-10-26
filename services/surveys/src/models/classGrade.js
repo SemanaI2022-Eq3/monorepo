@@ -10,35 +10,35 @@ const classGradeSchema = new mongoose.Schema(
         },
         clarity :{
             type: Number,
-            required: true
+            // required: true
         },
         helpOffered : {
             type: Number,
-            required: true
+            // required: true
         },
         classDifficulty: {
             type: Number,
-            required: true
+            // required: true
         },
         formTags : {
             type: Array,
-            required : true
+            // required : true
         },
         comments : {
             type: String,
-            required : true
+            // required : true
         },
         doRecommend :{
             type : Boolean,
-            require: true 
+            // require: true 
         },
         obligatoryLectureAssitance : {
             type : Boolean,
-            required : true
+            // required : true
         },
         finalGrade:{
             type : Number,
-            required: false
+            // required: false
         }
 
     }
