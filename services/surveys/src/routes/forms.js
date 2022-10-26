@@ -1,19 +1,17 @@
 import express from 'express';
-import mongoose from 'mongoose';
+// eslint-disable-next-line no-unused-vars
+import dbconn from '../models/dbconn';
 import { authRequired } from '../middleware/auth-required';
 import Teacher from '../models/teacherSchema'
 import Class from '../models/classSchema'
-import {mongodbUri} from '../config'
+
 import ClassGrade from '../models/classGrade'
 
 const forms = express();
 
+// console.log(dbconn);
 
 
-mongoose.connect(
-    mongodbUri, 
-    {useNewUrlParser: true, useUnifiedTopology:true}
-    ).then(console.log("\n--------------\nDB ONLINE\n-------------"))
 /*
 forms.use('/forms', authRequired,  (_req, res) => {
     res.status(200).json({
