@@ -37,12 +37,12 @@ jobs:
           push: true
           tags: patoguereque/semanai-auth-service:latest
       -
-        name: Build and push Survey
-        id: docker-build-survey
+        name: Build and push Surveys
+        id: docker-build-surveys
         uses: docker/build-push-action@v3
         with:
-          builder: ${{ steps.builder-survey.outputs.name }}
-          context: ./services/survey
-          file: ./services/survey/Dockerfile
+          builder: ${{ steps.builder-surveys.outputs.name }}
+          context: ./services/surveys
+          file: ./services/surveys/Dockerfile
           push: true
-          tags: patoguereque/semanai-survey-service:latest
+          tags: patoguereque/semanai-surveys-service:latest
