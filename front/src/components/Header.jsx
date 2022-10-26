@@ -6,7 +6,7 @@ import Typography from "@mui/joy/Typography";
 import { TextField, IconButton } from "@mui/joy";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
-function Header(props) {
+export function Header(props) {
   return (
     <Box
       component="header"
@@ -76,4 +76,3 @@ function Header(props) {
   );
 }
 
-export default Header;
