@@ -4,7 +4,7 @@ import passport from 'passport';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import cookieParser from 'cookie-parser';
 import { jwtRS256 } from './config';
-import { ping } from './routes';
+import { ping , forms } from './routes';
 
 const app = express();
 
@@ -37,5 +37,6 @@ app.get('/api/survey', (_req, res) =>
 );
 
 app.use('/api/survey', ping);
+app.use('/api/survey',forms);
 
 export default app;

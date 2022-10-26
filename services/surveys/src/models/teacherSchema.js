@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const teacherSchema = new mongoose.Schema(
     {
+        
         name : {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         institution:{
             type: String,
@@ -15,6 +15,7 @@ const teacherSchema = new mongoose.Schema(
             type : String,
             required: false
         }
+
 
     }
 );
