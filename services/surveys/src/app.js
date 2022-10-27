@@ -4,7 +4,7 @@ import passport from 'passport';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import cookieParser from 'cookie-parser';
 import { isProd, jwtRS256 } from './config';
-import { ping, forms } from './routes';
+import { ping, forms, teacher } from './routes';
 
 const app = express();
 
@@ -40,6 +40,7 @@ app.get('/api/survey', (_req, res) =>
 
 app.use('/api/survey', ping);
 app.use('/api/survey', forms);
+app.use('/api/survey', teacher);
 
 app.use((err, _req, res, next) => {
   if (res.headersSent) {
