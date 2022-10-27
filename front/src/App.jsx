@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
 import QualifyTeacher from "./views/QualifyTeacher";
+import School from "./views/School";
 import Layout from "./components/Layout";
 import { AuthContextProvider } from "./context/auth-context";
 import { TeacherProfile } from "./components/TeacherProfile";
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path="/teacher/:id" element={<TeacherProfile />} />
                 <Route path="/universities" element={<Home />} />
                 <Route path="/qualify" element={<QualifyTeacher />} />
+                <Route path="/school" element={<School />} />
               </Route>
             </Routes>
           </AuthContextProvider>
