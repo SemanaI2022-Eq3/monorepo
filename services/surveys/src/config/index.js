@@ -21,4 +21,16 @@ if (!mongodbUri) {
   }
 }
 
-export { port, mongodbUri };
+const decode = (data) => {
+  if (!data) {
+    return undefined;
+  }
+  const buff = Buffer.from(data, 'base64');
+  return buff.toString('utf-8');
+};
+
+const jwtRS256 = {
+  publicKey: decode(process.env.JWT_RS256_PUB_KEY),
+};
+
+export { port, mongodbUri, jwtRS256, isProd };

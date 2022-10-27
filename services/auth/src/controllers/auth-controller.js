@@ -1,4 +1,4 @@
-import GoogleStrategy from 'passport-google-oidc';
+import GoogleStrategy from 'passport-google-oauth20';
 import passport from 'passport';
 import { googleCallback, googleClientId, googleClientSecret } from '../config';
 import { userRepository } from '../database';
@@ -11,7 +11,7 @@ passport.use(
       callbackURL: googleCallback,
       scope: ['profile', 'email'],
     },
-    async (_issuer, profile, callback) => {
+    async (_accessToken, _refreshToken, profile, callback) => {
       const { id } = profile;
       const email = profile.emails[0].value;
       const firstName = profile.name.givenName;

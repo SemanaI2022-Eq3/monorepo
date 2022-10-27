@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "husky": "^8.0.1"
+  },
+  "scripts": {
+    "prepare": "husky install && yarn prepare:back && yarn prepare:auth && yarn prepare:surveys",
+    "prepare:front": "cd front && yarn install",
+    "prepare:auth": "cd services/auth && yarn install",
+    "prepare:surveys": "cd services/survey && yarn install"
+  }
+}

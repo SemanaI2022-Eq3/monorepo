@@ -9,8 +9,13 @@ RUN yarn --frozen-lockfile
 
 COPY . .
 
+ARG SURVEY_ENDPOINT="http://localhost"
+ARG AUTH_ENDPOINT="http://localhost"
+
 # build application
-RUN yarn build
+RUN REACT_APP_SURVEY_ENDPOINT=${SURVEY_ENDPOINT} \
+    REACT_APP_AUTH_ENDPOINT=${AUTH_ENDPOINT}     \
+    yarn build
 
 FROM nginx:alpine
 

@@ -2,6 +2,7 @@ import Sheet from "@mui/joy/Sheet";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { AUTH_ENDPOINT, SURVEY_ENDPOINT } from "../constants";
 
 const Home = () => {
   const [authServiceStatus, setAuthServiceStatus] = useState("Loading...");
@@ -9,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("/api/auth/")
+      .get(`${AUTH_ENDPOINT}/api/auth/`)
       .then((res) => {
         setAuthServiceStatus(res.data.message);
       })
@@ -18,7 +19,7 @@ const Home = () => {
       });
 
     axios
-      .get("/api/survey/")
+      .get(`${SURVEY_ENDPOINT}/api/survey/`)
       .then((res) => {
         setSurveyServiceStatus(res.data.message);
       })
