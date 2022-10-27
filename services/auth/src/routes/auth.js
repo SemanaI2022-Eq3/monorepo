@@ -57,7 +57,9 @@ auth.get(
 );
 
 auth.get('/logout', (_req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    domain: jwtRS256.domain,
+  });
   res.redirect(loginRedirect);
 });
 
