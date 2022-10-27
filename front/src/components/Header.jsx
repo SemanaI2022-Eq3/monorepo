@@ -30,13 +30,20 @@ export function Header(props) {
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
-      <Link style={{ textDecoration: "none" }} to={"/qualify"}>
-        <Typography component="h1" fontWeight="xl">
-          Califica Profesores
-        </Typography>
-      </Link>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 1.5,
+        }}
+      >
+        <Link style={{ textDecoration: "none" }} to={"/qualify"}>
+          <Typography component="h1" fontWeight="xl">
+            Califica Profesores
+          </Typography>
+        </Link>
 
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         <Link
           style={{ textDecoration: "none", paddingRight: "2%" }}
           to={"/universities"}
@@ -71,7 +78,15 @@ export function Header(props) {
           },
         }}
       />
-      <Box sx={{ display: "flex", flexDirection: "row", gap: 1.5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 1.5,
+          width: "340px",
+          justifyContent: "end",
+        }}
+      >
         <IconButton
           size="sm"
           variant="outlined"
