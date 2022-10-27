@@ -5,6 +5,7 @@ import QualifyTeacher from "./views/QualifyTeacher";
 import Layout from "./components/Layout";
 import { AuthContextProvider } from "./context/auth-context";
 import { CssVarsProvider } from "@mui/joy/styles";
+import { TeacherProfile } from "./components/TeacherProfile";
 
 
 
@@ -16,6 +17,7 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/teachers" element={<Home />} />
+            <Route path="/teacher/:id" element={<TeacherProfile />} />
             <Route path="/universities" element={<Home />} />
             <Route path="/qualify" element={<QualifyTeacher />}/>
           </Route>
