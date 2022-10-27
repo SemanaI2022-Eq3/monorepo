@@ -32,11 +32,9 @@ function Header(props) {
       ]}
     >
       <Link style={{ textDecoration: "none" }} to={"/"}>
-        <Link style={{textDecoration: "none"}} to={"/school"}>
-          <Typography component="h1" fontWeight="xl">
-            Califica Profesores
-          </Typography>
-        </Link>
+        <Typography component="h1" fontWeight="xl">
+          Califica Profesores
+        </Typography>
       </Link>
 
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
