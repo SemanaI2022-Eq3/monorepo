@@ -3,8 +3,6 @@ import { authRequired } from '../middleware/auth-required';
 import Teacher from '../models/teacherSchema';
 import Class from '../models/classSchema';
 import ClassGrade from '../models/classGrade';
-// eslint-disable-next-line no-unused-vars
-import dbconn from '../models/dbconn';
 
 const forms = express();
 
@@ -41,31 +39,18 @@ forms.get('/forms/dummypopulate', authRequired, async (_req, res, next) => {
   }
 });
 
-forms.post('/forms', authRequired, async (_req, res, next) => {
+forms.post('/forms', authRequired, async (req, res, next) => {
   try {
-    // const formsRes = _req.body;
-
-    /*
-    {"firstName":"asdas",
-    "lastName":"dasda",
-    "materia":"sdsad",
-    "facilidad":75,
-    "ayuda":100,
-    "claridad":50,
-    "Calificacionpromedio":70,
-    "Comments":"asdasd"}
-    */
-    console.log(_req.body);
     const formsRes = {
-      class: _req.body.materia,
-      clarity: _req.body.claridad,
-      helpOffered: _req.body.ayuda,
-      classDifficulty: _req.body.facilidad,
-      comments: _req.body.Comments,
-      finalGrade: _req.body.Calificacionpromedio,
+      class: req.body.materia,
+      clarity: req.body.claridad,
+      helpOffered: req.body.ayuda,
+      classDifficulty: req.body.facilidad,
+      comments: req.body.Comments,
+      finalGrade: req.body.Calificacionpromedio,
     };
 
-    const teacherName = `${_req.body.firstName} ${_req.body.lastName}`;
+    const teacherName = `${req.body.firstName} ${req.body.lastName}`;
     const teacherFound = await Teacher.findOne({ name: teacherName });
     if (teacherFound == null) {
       const teachesClass = ['Mate', 'Español', 'Historia', 'Quimica'];
@@ -80,27 +65,27 @@ forms.post('/forms', authRequired, async (_req, res, next) => {
       const teach = await teacher.save();
       // eslint-disable-next-line no-underscore-dangle
       const classes = new Class({
-        name: _req.body.materia,
+        name: req.body.materia,
         // eslint-disable-next-line no-underscore-dangle
         teacher: teach._id,
       });
       // eslint-disable-next-line no-await-in-loop
       await classes.save();
     }
-    let classess = await Class.findOne({ name: _req.body.materia });
-    if (classess == null) {
+    let classes = await Class.findOne({ name: req.body.materia });
+    if (classes == null) {
       // eslint-disable-next-line no-underscore-dangle
       const newClass = new Class({
-        name: _req.body.materia,
+        name: req.body.materia,
         // eslint-disable-next-line no-underscore-dangle
         teacher: teacherFound._id,
       });
-      classess = await newClass.save();
+      classes = await newClass.save();
     }
     // eslint-disable-next-line no-underscore-dangle
-    formsRes.class = classess._id;
-    const classgrade = new ClassGrade(formsRes);
-    await classgrade.save();
+    formsRes.class = classes._id;
+    const classGrade = new ClassGrade(formsRes);
+    await classGrade.save();
 
     res.status(200).json({
       msg: 'ok',
