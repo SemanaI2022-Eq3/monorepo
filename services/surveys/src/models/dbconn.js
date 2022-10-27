@@ -6,6 +6,6 @@ mongoose.connect(mongodbUri, {
   useUnifiedTopology: true,
 });
 
-console.log('Contecting DB');
+console.log('Connecting DB');
 
 export default mongoose;

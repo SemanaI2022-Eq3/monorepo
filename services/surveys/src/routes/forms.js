@@ -89,6 +89,7 @@ forms.post('/forms', async (_req, res, next) => {
     "Calificacionpromedio":70,
     "Comments":"asdasd"}
     */
+    console.log(_req.body);
     const formsRes = {
       class: _req.body.materia,
       clarity: _req.body.claridad,
@@ -114,6 +115,7 @@ forms.post('/forms', async (_req, res, next) => {
       // eslint-disable-next-line no-underscore-dangle
       const classes = new Class({
         name: _req.body.materia,
+        // eslint-disable-next-line no-underscore-dangle
         teacher: teach._id,
       });
       // eslint-disable-next-line no-await-in-loop
@@ -124,6 +126,7 @@ forms.post('/forms', async (_req, res, next) => {
       // eslint-disable-next-line no-underscore-dangle
       const newClass = new Class({
         name: _req.body.materia,
+        // eslint-disable-next-line no-underscore-dangle
         teacher: teacherFound._id,
       });
       classess = await newClass.save();

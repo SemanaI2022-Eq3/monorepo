@@ -30,7 +30,7 @@ const classGradeSchema = new mongoose.Schema({
     type: Boolean,
     // require: true
   },
-  obligatoryLectureAssitance: {
+  obligatoryLectureAssistance: {
     type: Boolean,
     // required : true
   },
