@@ -8,6 +8,7 @@ import Slider from "@mui/joy/Slider";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import { styled } from "@mui/joy/styles";
+import { SURVEY_ENDPOINT } from "../constants";
 
 const Separator = styled("div")(
   ({ theme }) => `
@@ -134,7 +135,7 @@ const QualifyTeacher = () => {
   const handleSaveInfo = (e) => {
     e.preventDefault();
 
-    axios.post(`https://localhost:4000/api/form/teacher`, {
+    axios.post(`${SURVEY_ENDPOINT}/api/survey/forms`, {
       firstName: inputFirstName,
       lastName: inputLastName,
       materia: inputmateria,
