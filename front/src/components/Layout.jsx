@@ -1,15 +1,22 @@
+import { Box } from "@mui/joy";
 import React from "react";
 import { Outlet } from "react-router-dom";
-
 import { Header } from "./Header";
 
 export default function Layout() {
   return (
     <>
-      <main>
+      <Box
+        sx={{
+          bgcolor: "background.appBody",
+          minHeight: "100vh",
+        }}
+      >
         <Header />
-        <Outlet />
-      </main>
+        <main>
+          <Outlet />
+        </main>
+      </Box>
     </>
   );
 }

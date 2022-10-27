@@ -1,10 +1,9 @@
 import Box from "@mui/joy/Box";
-
 import { Link } from "react-router-dom";
-
 import Typography from "@mui/joy/Typography";
 import { TextField, IconButton } from "@mui/joy";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import ColorSchemeToggle from "./ColorSchemeToggle";
 
 export function Header(props) {
   return (
@@ -31,11 +30,11 @@ export function Header(props) {
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
-     <Link style={{ textDecoration: "none" }} to={"/qualify"}>
+      <Link style={{ textDecoration: "none" }} to={"/qualify"}>
         <Typography component="h1" fontWeight="xl">
           Califica Profesores
         </Typography>
-</Link>
+      </Link>
 
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         <Link
@@ -72,7 +71,18 @@ export function Header(props) {
           },
         }}
       />
+      <Box sx={{ display: "flex", flexDirection: "row", gap: 1.5 }}>
+        <IconButton
+          size="sm"
+          variant="outlined"
+          color="primary"
+          sx={{ display: { xs: "inline-flex", sm: "none" } }}
+        >
+          <SearchRoundedIcon />
+        </IconButton>
+
+        <ColorSchemeToggle />
+      </Box>
     </Box>
   );
 }
-

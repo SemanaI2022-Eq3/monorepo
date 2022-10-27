@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Slider from "@mui/joy/Slider";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/joy/styles";
 
 const Separator = styled("div")(
   ({ theme }) => `
