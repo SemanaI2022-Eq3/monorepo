@@ -1,13 +1,13 @@
 import { useState } from "react";
 import TextField from "@mui/joy/TextField";
-import { Button } from "@mui/joy";
+import { Button, Sheet } from "@mui/joy";
 import axios from "axios";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import EditIcon from "@mui/icons-material/Edit";
 import Slider from "@mui/joy/Slider";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
-import { styled } from "@mui/material/styles";
+import { styled } from "@mui/joy/styles";
 
 const Separator = styled("div")(
   ({ theme }) => `
@@ -156,102 +156,104 @@ const QualifyTeacher = () => {
   };
 
   return (
-    <div>
-      <Box sx={{ width: 400 }}>
+    <Sheet sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+      <Sheet>
+        <Box sx={{ width: 400 }}>
+          <TextField
+            color="neutral"
+            disabled={false}
+            label="Nombre(s)"
+            size="md"
+            startDecorator={<PersonRoundedIcon />}
+            variant="soft"
+            placeholder="First Name"
+            value={inputFirstName}
+            onChange={(e) => setInputFirstName(e.target.value)}
+          />
+          <TextField
+            color="neutral"
+            disabled={false}
+            label="Apellido(s)"
+            size="md"
+            startDecorator={<PersonRoundedIcon />}
+            variant="soft"
+            placeholder="Last Name"
+            value={inputLastName}
+            onChange={(e) => setInputLastName(e.target.value)}
+          />
+          <TextField
+            color="neutral"
+            disabled={false}
+            label="Materia"
+            size="md"
+            startDecorator={<EditIcon />}
+            variant="soft"
+            placeholder="Materia"
+            value={inputmateria}
+            onChange={(e) => setInputmateria(e.target.value)}
+          />
+        </Box>
+
+        <Box sx={{ width: 400 }}>
+          <Typography gutterBottom>Facilidad</Typography>
+          <Slider
+            defaultValue={0}
+            getAriaValueText={valueText}
+            marks={marks}
+            step={25}
+            value={inputFacilidad}
+            onChange={(e) => setInputFacilidad(e.target.value)}
+          />
+
+          <Separator />
+          <Typography gutterBottom>Claridad</Typography>
+          <Slider
+            defaultValue={0}
+            getAriaValueText={valueText}
+            marks={marksclaridad}
+            step={25}
+            value={inputQuality}
+            onChange={(e) => setInputQuality(e.target.value)}
+          />
+
+          <Separator />
+          <Typography gutterBottom>Ayuda</Typography>
+          <Slider
+            defaultValue={0}
+            getAriaValueText={valueText}
+            marks={marksayuda}
+            step={25}
+            value={inputAyuda}
+            onChange={(e) => setInputAyuda(e.target.value)}
+          />
+
+          <Separator />
+          <Separator />
+
+          <Typography gutterBottom>Calificacion general profesor</Typography>
+          <Slider
+            defaultValue={0}
+            getAriaValueText={valueText}
+            marks={markcalfs}
+            step={10}
+            value={inputCalfAverage}
+            onChange={(e) => setInputCalfAverage(e.target.value)}
+          />
+        </Box>
+
+        <Separator />
+
         <TextField
-          color="neutral"
-          disabled={false}
-          label="Nombre(s)"
-          size="md"
-          startDecorator={<PersonRoundedIcon />}
-          variant="soft"
-          placeholder="First Name"
-          value={inputFirstName}
-          onChange={(e) => setInputFirstName(e.target.value)}
+          label="Comentarios"
+          placeholder="Escribe aqui los comentarios sobre tu profesor..."
+          fullWidth
+          value={inputComments}
+          onChange={(e) => setInputComments(e.target.value)}
         />
-        <TextField
-          color="neutral"
-          disabled={false}
-          label="Apellido(s)"
-          size="md"
-          startDecorator={<PersonRoundedIcon />}
-          variant="soft"
-          placeholder="Last Name"
-          value={inputLastName}
-          onChange={(e) => setInputLastName(e.target.value)}
-        />
-        <TextField
-          color="neutral"
-          disabled={false}
-          label="Materia"
-          size="md"
-          startDecorator={<EditIcon />}
-          variant="soft"
-          placeholder="Materia"
-          value={inputmateria}
-          onChange={(e) => setInputmateria(e.target.value)}
-        />
-      </Box>
-
-      <Box sx={{ width: 300 }}>
-        <Typography gutterBottom>Facilidad</Typography>
-        <Slider
-          defaultValue={0}
-          getAriaValueText={valueText}
-          marks={marks}
-          step={25}
-          value={inputFacilidad}
-          onChange={(e) => setInputFacilidad(e.target.value)}
-        />
-
         <Separator />
-        <Typography gutterBottom>Claridad</Typography>
-        <Slider
-          defaultValue={0}
-          getAriaValueText={valueText}
-          marks={marksclaridad}
-          step={25}
-          value={inputQuality}
-          onChange={(e) => setInputQuality(e.target.value)}
-        />
-
-        <Separator />
-        <Typography gutterBottom>Ayuda</Typography>
-        <Slider
-          defaultValue={0}
-          getAriaValueText={valueText}
-          marks={marksayuda}
-          step={25}
-          value={inputAyuda}
-          onChange={(e) => setInputAyuda(e.target.value)}
-        />
-
-        <Separator />
-        <Separator />
-
-        <Typography gutterBottom>Calificacion general profesor</Typography>
-        <Slider
-          defaultValue={0}
-          getAriaValueText={valueText}
-          marks={markcalfs}
-          step={10}
-          value={inputCalfAverage}
-          onChange={(e) => setInputCalfAverage(e.target.value)}
-        />
-      </Box>
-
-      <Separator />
-
-      <TextField
-        label="Comentarios"
-        placeholder="Escribe aqui los comentarios sobre tu profesor..."
-        fullWidth
-        value={inputComments}
-        onChange={(e) => setInputComments(e.target.value)}
-      />
-      <Separator />
-      <Button onClick={(e) => handleSaveInfo(e)}>Guardar</Button>
-    </div>
+        <Button onClick={(e) => handleSaveInfo(e)}>Guardar</Button>
+      </Sheet>
+    </Sheet>
   );
 };
 
