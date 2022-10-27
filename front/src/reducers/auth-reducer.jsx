@@ -28,10 +28,18 @@ export const fetchUser = (dispatch) => {
   axios
     .get(`${AUTH_ENDPOINT}/api/user/info`)
     .then((res) => {
-      dispatch(fetchUserResponse({
-        user: res.data.user,
-        authenticated: res.data.user !== undefined,
-      }));
+      dispatch(
+        fetchUserResponse({
+          user: res.data.user,
+          authenticated: res.data.user !== undefined,
+        })
+      );
     })
-    .catch(() => {});
+    .catch(() => {
+      dispatch(
+        fetchUserResponse({
+          authenticated: false,
+        })
+      );
+    });
 };

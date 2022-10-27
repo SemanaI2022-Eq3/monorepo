@@ -18,7 +18,6 @@ const ColorSchemeToggle = () => {
   return (
     <IconButton
       id="toggle-mode"
-      size="sm"
       variant="outlined"
       color="primary"
       onClick={() => {

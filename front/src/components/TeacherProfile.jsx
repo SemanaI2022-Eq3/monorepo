@@ -1,6 +1,5 @@
 import { Typography } from "@mui/joy";
-import Sheet, { SheetProps } from "@mui/joy/Sheet";
-import Divider from '@mui/joy/Divider';
+import Divider from "@mui/joy/Divider";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
 import { useParams } from "react-router-dom";
 
@@ -45,7 +44,9 @@ export function TeacherProfile() {
           marginRight: -1,
         }}
       >
-        <Typography  level="h1">{teacher.nombre + " " + teacher.apellido}</Typography>
+        <Typography level="h1">
+          {teacher.nombre + " " + teacher.apellido}
+        </Typography>
         <Divider />
         <Box
           color="neutral"

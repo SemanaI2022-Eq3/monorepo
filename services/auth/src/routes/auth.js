@@ -56,8 +56,8 @@ auth.get(
   }
 );
 
-auth.get('/logout', (req, res) => {
-  req.logout();
+auth.get('/logout', (_req, res) => {
+  res.clearCookie('token');
   res.redirect(loginRedirect);
 });
 

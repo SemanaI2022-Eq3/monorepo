@@ -1,11 +1,35 @@
+import React from "react";
 import Box from "@mui/joy/Box";
 import { Link } from "react-router-dom";
 import Typography from "@mui/joy/Typography";
-import { TextField, IconButton } from "@mui/joy";
+import {
+  TextField,
+  IconButton,
+  Avatar,
+  Menu,
+  MenuItem,
+  Divider,
+  Button,
+  ListItemDecorator,
+} from "@mui/joy";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ColorSchemeToggle from "./ColorSchemeToggle";
+import { useAuthContext } from "../context/auth-context";
+import Logout from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export function Header(props) {
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user, login, logout } = useAuthContext();
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
     <Box
       component="header"
@@ -97,6 +121,43 @@ export function Header(props) {
         </IconButton>
 
         <ColorSchemeToggle />
+
+        {user !== undefined ? (
+          <>
+            <IconButton
+              onClick={handleOpenUserMenu}
+              variant="outlined"
+              color="primary"
+            >
+              <AccountCircleIcon />
+            </IconButton>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+              placement="bottom-end"
+            >
+              <MenuItem>
+                <Avatar />
+                {user.firstName} {user.lastName}
+              </MenuItem>
+
+              <Divider />
+              <MenuItem onClick={logout}>
+                <ListItemDecorator>
+                  <Logout fontSize="small" />
+                </ListItemDecorator>
+                Logout
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <Button sx={{ color: "white", display: "block" }} onClick={login}>
+            Login
+          </Button>
+        )}
       </Box>
     </Box>
   );
