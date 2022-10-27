@@ -41,7 +41,7 @@ forms.get('/forms/dummypopulate', authRequired, async (_req, res, next) => {
   }
 });
 
-forms.post('/forms/teacher', authRequired, async (_req, res, next) => {
+forms.post('/teacher', authRequired, async (_req, res, next) => {
   try {
     // const teachersToAdd = ['Luis', 'María', 'Sara', 'Pedro'];
     // const teachDpto = ['Mate', 'Español', 'Historia', 'Quimica'];
@@ -69,6 +69,49 @@ forms.post('/forms/teacher', authRequired, async (_req, res, next) => {
 
     res.status(200).json({
       msg: 'ok',
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+forms.get('/teacher/:teacherId', async (_req, res, next) => {
+  try {
+    const teachers = await Teacher.findById(_req.params.teacherId);
+    if (teachers != null) {
+      // eslint-disable-next-line no-underscore-dangle
+      const classes = await Class.find({ teacher: teachers._id }).populate(
+        'teacher'
+      );
+      console.log(classes);
+      let grades = [];
+      if (classes != null) {
+        for (let i = 0; i < classes.length; i += 1) {
+          // eslint-disable-next-line no-underscore-dangle, no-await-in-loop
+          const foundgrades = await ClassGrade.find({
+            class: classes[i]._id,
+          }).populate('class', 'name');
+
+          grades = grades.concat(foundgrades);
+        }
+      }
+      res.status(200).json({
+        grades: grades,
+      });
+    } else {
+      res.json({ msg: 'Teacher not found' });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+forms.get('/teachers', async (_req, res, next) => {
+  try {
+    const teachers = await Teacher.find({});
+
+    res.status(200).json({
+      teachers: teachers,
     });
   } catch (error) {
     next(error);
