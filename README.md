@@ -33,6 +33,14 @@ yarn start
 
 ## Running in docker
 
+### Generating RS256 keys for JWT
+
+```sh
+ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
+```
+
+Then pass the public key and private key through https://www.base64encode.org/ and append them to the .env
 
 ### Building
 

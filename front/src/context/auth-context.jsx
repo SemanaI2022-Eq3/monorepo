@@ -1,6 +1,6 @@
-import React, { useReducer, useEffect, createContext } from 'react';
-import { useContext } from 'react';
-import { fetchUser, reducer } from '../reducers/auth-reducer';
+import React, { useReducer, useEffect, createContext } from "react";
+import { useContext } from "react";
+import { fetchUser, reducer } from "../reducers/auth-reducer";
 
 export const AuthContext = createContext();
 
@@ -18,14 +18,14 @@ export const useAuthContext = () => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error('useAuthContext must be used within a AppProvider');
+    throw new Error("useAuthContext must be used within a AppProvider");
   }
 
   const [state] = context;
 
   return {
-    login: () => (window.location = '/api/auth/google'),
-    logout: () => (window.location = '/api/auth/logout'),
+    login: () => (window.location = "/api/auth/google"),
+    logout: () => (window.location = "/api/auth/logout"),
 
     user: state.user,
   };

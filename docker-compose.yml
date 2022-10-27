@@ -31,6 +31,7 @@ services:
     environment:
       - PORT=80
       - "MONGODB_URI=${MONGODB_URI}"
+      - "JWT_RS256_PUB_KEY=${JWT_RS256_PUB_KEY}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.survey-service.rule=(Host(`localhost`) && PathPrefix(`/api/survey`))"
@@ -47,6 +48,9 @@ services:
       - "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}"
       - "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}"
       - "GOOGLE_CALLBACK=${GOOGLE_CALLBACK}"
+      - "JWT_RS256_PASSPHRASE=${JWT_RS256_PASSPHRASE}"
+      - "JWT_RS256_PRIV_KEY=${JWT_RS256_PRIV_KEY}"
+      - "JWT_RS256_PUB_KEY=${JWT_RS256_PUB_KEY}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.auth-service.rule=(Host(`localhost`) && (PathPrefix(`/api/user`) || PathPrefix(`/api/auth`)))"
