@@ -43,6 +43,7 @@ const loginRedirect = process.env.LOGIN_REDIRECT || '/';
 
 export {
   port,
+  isProd,
   mongodbUri,
   googleClientId,
   googleClientSecret,

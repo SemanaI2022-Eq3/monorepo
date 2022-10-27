@@ -33,4 +33,4 @@ const jwtRS256 = {
   publicKey: decode(process.env.JWT_RS256_PUB_KEY),
 };
 
-export { port, mongodbUri, jwtRS256 };
+export { port, mongodbUri, jwtRS256, isProd };

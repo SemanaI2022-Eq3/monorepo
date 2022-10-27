@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import passport from 'passport';
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import cookieParser from 'cookie-parser';
-import { jwtRS256 } from './config';
+import { isProd, jwtRS256 } from './config';
 import { ping, auth, user } from './routes';
 
 const app = express();
@@ -27,7 +27,9 @@ const optsJwt = {
   algorithms: ['RS256'],
 };
 
-passport.use(new JwtStrategy(optsJwt, (jwtPayload, done) => done(null, jwtPayload)));
+passport.use(
+  new JwtStrategy(optsJwt, (jwtPayload, done) => done(null, jwtPayload))
+);
 app.use(passport.initialize());
 
 app.get('/api/auth', (_req, res) =>
@@ -39,5 +41,20 @@ app.get('/api/auth', (_req, res) =>
 app.use('/api', ping);
 app.use('/api/auth', auth);
 app.use('/api/user', user);
+
+app.use((err, _req, res, next) => {
+  if (res.headersSent) {
+    next(err);
+    return;
+  }
+
+  if (isProd) {
+    // eslint-disable-next-line no-console
+    console.error(err.stack);
+    res.status(500).send({ message: 'Something broke!', error: err });
+  } else {
+    next(err);
+  }
+});
 
 export default app;

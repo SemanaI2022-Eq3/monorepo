@@ -1,11 +1,9 @@
 import mongoose from 'mongoose';
-import {mongodbUri} from '../config';
+import { mongodbUri } from '../config';
 
-
-
-mongoose.connect(
-    mongodbUri, 
-    {useNewUrlParser: true, useUnifiedTopology:true}
-    );
+mongoose.connect(mongodbUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 export default mongoose;
