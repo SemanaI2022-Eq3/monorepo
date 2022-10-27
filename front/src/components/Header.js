@@ -31,11 +31,11 @@ function Header(props) {
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
-      <Link style={{ textDecoration: "none" }} to={"/"}>
+     <Link style={{ textDecoration: "none" }} to={"/qualify"}>
         <Typography component="h1" fontWeight="xl">
           Califica Profesores
         </Typography>
-      </Link>
+</Link>
 
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         <Link
