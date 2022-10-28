@@ -81,6 +81,11 @@ export function Header(props) {
             Profesores
           </Typography>
         </Link>
+        <Link style={{ textDecoration: "none" }} to={"/school"}>
+          <Typography component="h2" fontWeight="md">
+            Escuelas
+          </Typography>
+        </Link>
       </Box>
 
       <TextField

@@ -7,19 +7,19 @@ import { Typography } from '@mui/joy';
 import StarIcon from '@mui/icons-material/Star';
 
 
-// function randomNumberInRange(min, max) {
-//   min = 1;
-//   max = 100;
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
+function randomNumberInRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-const profesors = ["Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-Jamesafdsasfdsafasdfasdfs", "Aarron", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan", "Abbas"]
+
+
+const profesors = ["Citlali Ritter", "Javonte Grover", "Josh Dominguez", "Javion Pullen", "Leigh Durant", "Suzanne Blount", "Christian Wagner", "Iris Rubio", "Dante Slone", "Maddie Hatfield"]
 const schoolCals = ["Reputacion", "Oportunidades", "Instalaciones", "Comida", "Ubicacion"]
 
 const listSchoolCal = schoolCals.map((schoolCal) => 
-  <Box m={5} sx={{display: "flex", justifyContent: "space-between"}}>
-    <Typography mx={2}> {schoolCal} 
-      <Typography> 9.0 </Typography>
+  <Box m={5} sx={{display: "flex",}}>
+    <Typography px={2}> {schoolCal} 
+      <Typography> {randomNumberInRange(60, 100)} </Typography>
     </Typography>
     <StarIcon fontSize="large"></StarIcon>
   </Box>
@@ -28,16 +28,17 @@ const listSchoolCal = schoolCals.map((schoolCal) =>
 const listProfesors = profesors.map((profesor, key) => 
   <Box m={5} sx={{display: "flex"}}>
     <AccountCircleIcon />
-    <Typography mx={12}> {profesor} 
-        <Typography>Resenas </Typography>
-    </Typography> 
+    <Box>
+      <Typography px={12}> {profesor} </Typography> 
+      <Typography px={12}>Resenas {randomNumberInRange(60,100)}</Typography>
+    </Box>
   </Box>
 )
 
 
 export default function School() {
   return (
-  <Box sx={{ flexGrow: 1, width: "100%"}} >
+  <Box sx={{ flexGrow: 1, width: "98%"}} >
     <Grid container spacing={2} >
       <Grid item xs={6} > 
         <Box  sx={{
@@ -49,7 +50,7 @@ export default function School() {
             height: "100%",
             },
           }}>
-          <Sheet elevation={3} sx={{ backgroundColor: "#808080"}}>
+          <Sheet elevation={3} >
           <Typography variant='h5' m={5}>Profesores mejores calificados</Typography>
             {listProfesors}
           </Sheet>
@@ -66,7 +67,7 @@ export default function School() {
             },
           }}>
           <Sheet elevation={3}>
-          <Typography variant='h5' m={5}>Calificacion de la escuela</Typography>
+          <Typography variant='h5' m={5}>Calificacion de la escuela {}</Typography>
             {listSchoolCal}
           </Sheet>
         </Box>
