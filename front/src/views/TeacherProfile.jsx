@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { AUTH_ENDPOINT, SURVEY_ENDPOINT } from "../constants";
 
-import { Typography } from "@mui/joy";
+import { Typography, Card } from "@mui/joy";
 import Divider from "@mui/joy/Divider";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
 import { useParams } from "react-router-dom";
@@ -60,6 +60,7 @@ export function TeacherProfile() {
         </Typography>
         <Divider />
         <Box
+          component="ul"
           color="neutral"
           variant="outlined"
           sx={{
@@ -69,9 +70,48 @@ export function TeacherProfile() {
             marginTop: 2,
             p: 2,
             minHeight: 300,
+            display: "flex",
+            gap: 2,
+            flexWrap: "wrap",
           }}
         >
-          {id}
+          <Card
+            component="li"
+            sx={{
+              minWidth: 200,
+              flexGrow: 1,
+              textAlign: "center",
+              paddingY: 12,
+            }}
+          >
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Calificacion General
+            </Typography>
+            <Typography level="display1">{teacherData.finalGrade}%</Typography>
+          </Card>
+          <Card
+            component="li"
+            sx={{
+              minWidth: 200,
+              flexGrow: 1,
+              textAlign: "center",
+              paddingY: 5,
+            }}
+          >
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Ayuda Ofrecida
+            </Typography>
+            <Typography level="display1">{teacherData.helpOffered}%</Typography>
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Dificultad
+            </Typography>
+            <Typography level="display1">{teacherData.classDifficulty}%</Typography>
+          </Card>
+          <Card component="li" sx={{ minWidth: 300, flexGrow: 3 }}>
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>Comentarios:</Typography>
+            <Divider />
+            <Typography sx={{ mt: 0.5 }}>{teacherData.comments}</Typography>
+          </Card>
         </Box>
       </Box>
     </ThemeProvider>
