@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { AUTH_ENDPOINT, SURVEY_ENDPOINT } from "../constants";
+
 import { Typography } from "@mui/joy";
 import Divider from "@mui/joy/Divider";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
@@ -25,15 +29,22 @@ const theme = createTheme({
 export function TeacherProfile() {
   const { id } = useParams();
 
-  const teacher = {
-    id: "90449",
-    nombre: "Angel",
-    apellido: "Abasolo Sotres",
-    clase: "Publicidad y Mercadotecnia",
-    numeroCalificaciones: "5",
-    calificacion: "7.6000",
-  };
-  console.log(id);
+  const [teacher, setTeacher] = useState([]);
+  const [teacherData, setTeacherData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${SURVEY_ENDPOINT}/api/survey/teachers`)
+      .then((res) => setTeacher(res.data.teachers.find(elem => elem._id == id)));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${SURVEY_ENDPOINT}/api/survey/teacher/${id}`)
+      .then((res) => setTeacherData(res.data.grades[0]));
+  }, []);
+
+  console.log(teacherData);
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -45,7 +56,7 @@ export function TeacherProfile() {
         }}
       >
         <Typography level="h1">
-          {teacher.nombre + " " + teacher.apellido}
+          {teacher.name}
         </Typography>
         <Divider />
         <Box

@@ -6,6 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Typography } from "@mui/joy";
 import StarIcon from "@mui/icons-material/Star";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { SURVEY_ENDPOINT } from "../constants";
 
 function randomNumberInRange(min, max) {
@@ -48,17 +49,22 @@ export default function School() {
               <Typography variant="h5" m={5}>
                 Profesores mejores calificados
               </Typography>
-              {teachers.map(({ name: teacherName }) => (
-                <Box m={5} sx={{ display: "flex" }} key={teacherName}>
-                  <AccountCircleIcon />
-                  <Box>
-                    <Typography px={12}> {teacherName} </Typography>
-                    <Typography px={12}>
-                      Reseñas {randomNumberInRange(60, 100)}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
+              {teachers.map(({ name: teacherName, _id: id }) => {
+                console.log(id)
+                return (
+                  <Link to={"/teacher/" + id}>
+                    <Box m={5} sx={{ display: "flex" }} key={teacherName}>
+                      <AccountCircleIcon />
+                      <Box>
+                        <Typography px={12}> {teacherName} </Typography>
+                        <Typography px={12}>
+                          Reseñas {randomNumberInRange(60, 100)}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Link>
+                )
+              })}
             </Sheet>
           </Box>
         </Grid>
