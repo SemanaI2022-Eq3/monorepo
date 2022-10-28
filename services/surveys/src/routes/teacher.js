@@ -3,8 +3,6 @@ import { authRequired } from '../middleware/auth-required';
 import Teacher from '../models/teacherSchema';
 import Class from '../models/classSchema';
 import ClassGrade from '../models/classGrade';
-// eslint-disable-next-line no-unused-vars
-import dbconn from '../models/dbconn';
 
 const teachersR = express();
 
@@ -50,7 +48,7 @@ teachersR.get('/teacher/:teacherId', authRequired, async (_req, res, next) => {
       const classes = await Class.find({ teacher: teachers._id }).populate(
         'teacher'
       );
-      console.log(classes);
+
       let grades = [];
       if (classes != null) {
         for (let i = 0; i < classes.length; i += 1) {
