@@ -3,6 +3,8 @@ import { authRequired } from '../middleware/auth-required';
 import Teacher from '../models/teacherSchema';
 import Class from '../models/classSchema';
 import ClassGrade from '../models/classGrade';
+// eslint-disable-next-line no-unused-vars
+import dbconn from '../models/dbconn';
 
 const teachersR = express();
 
@@ -75,6 +77,31 @@ teachersR.get('/teacher/:teacherId', authRequired, async (_req, res, next) => {
 teachersR.get('/teachers', authRequired, async (_req, res, next) => {
   try {
     const teachers = await Teacher.find({});
+    for (let j = 0; j < teachers.length; j += 1) {
+      // eslint-disable-next-line no-underscore-dangle, no-await-in-loop
+      const classes = await Class.find({ teacher: teachers[j]._id });
+
+      let grades = [];
+      if (classes != null) {
+        for (let i = 0; i < classes.length; i += 1) {
+          // eslint-disable-next-line no-underscore-dangle, no-await-in-loop
+          const foundgrades = await ClassGrade.find({
+            // eslint-disable-next-line no-underscore-dangle
+            class: classes[i]._id,
+          });
+
+          grades = grades.concat(foundgrades);
+        }
+      }
+      teachers[j] = {
+        // eslint-disable-next-line no-underscore-dangle
+        _id: teachers[j]._id,
+        name: teachers[j].name,
+        institution: teachers[j].institution,
+        department: teachers[j].department,
+        numRes: grades.length,
+      };
+    }
 
     res.status(200).json({
       teachers,

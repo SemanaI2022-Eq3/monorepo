@@ -37,6 +37,10 @@ const routes = [
     name: "Calificar",
     route: "/qualify",
   },
+  {
+    name: "Escuela",
+    route: "/school",
+  },
 ];
 
 export function Header(props) {

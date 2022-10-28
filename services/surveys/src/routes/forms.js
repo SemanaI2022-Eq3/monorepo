@@ -3,6 +3,8 @@ import { authRequired } from '../middleware/auth-required';
 import Teacher from '../models/teacherSchema';
 import Class from '../models/classSchema';
 import ClassGrade from '../models/classGrade';
+// eslint-disable-next-line no-unused-vars
+import dbconn from '../models/dbconn';
 
 const forms = express();
 

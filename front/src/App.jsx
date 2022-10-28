@@ -4,8 +4,9 @@ import Home from "./views/Home";
 import QualifyTeacher from "./views/QualifyTeacher";
 import Layout from "./components/Layout";
 import { AuthContextProvider } from "./context/auth-context";
-import { TeacherProfile } from "./components/TeacherProfile";
+import { TeacherProfile } from "./views/TeacherProfile";
 import { CssVarsProvider } from "@mui/joy/styles";
+import School from "./views/School";
 import { StyledEngineProvider } from "@mui/joy/styles";
 import theme from "./theme";
 import { GlobalStyles } from "@mui/joy";
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path="/teacher/:id" element={<TeacherProfile />} />
                 <Route path="/universities" element={<Home />} />
                 <Route path="/qualify" element={<QualifyTeacher />} />
+                <Route path="/school" element={<School />} />
               </Route>
             </Routes>
           </AuthContextProvider>
