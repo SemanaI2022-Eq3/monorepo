@@ -4,7 +4,7 @@ import Home from "./views/Home";
 import QualifyTeacher from "./views/QualifyTeacher";
 import Layout from "./components/Layout";
 import { AuthContextProvider } from "./context/auth-context";
-import { TeacherProfile } from "./components/TeacherProfile";
+import { TeacherProfile } from "./views/TeacherProfile";
 import { CssVarsProvider } from "@mui/joy/styles";
 import School from "./views/School";
 import { StyledEngineProvider } from "@mui/joy/styles";
