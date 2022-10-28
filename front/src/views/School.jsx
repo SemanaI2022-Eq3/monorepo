@@ -23,6 +23,7 @@ const schoolCals = [
 
 export default function School() {
   const [teachers, setTeachers] = useState([]);
+  const [resenas, setResenas] = useState([]);
 
   React.useEffect(() => {
     axios

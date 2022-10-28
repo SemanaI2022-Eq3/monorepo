@@ -77,6 +77,29 @@ teachersR.get('/teacher/:teacherId', authRequired, async (_req, res, next) => {
 teachersR.get('/teachers', authRequired, async (_req, res, next) => {
   try {
     const teachers = await Teacher.find({});
+    for (let j = 0; j < teachers.length; j += 1) {
+      // eslint-disable-next-line no-underscore-dangle, no-await-in-loop
+      const classes = await Class.find({ teacher: teachers[j]._id });
+
+      let grades = [];
+      if (classes != null) {
+        for (let i = 0; i < classes.length; i += 1) {
+          // eslint-disable-next-line no-underscore-dangle, no-await-in-loop
+          const foundgrades = await ClassGrade.find({
+            // eslint-disable-next-line no-underscore-dangle
+            class: classes[i]._id,
+          });
+
+          grades = grades.concat(foundgrades);
+        }
+      }
+      teachers[j] = {
+        name: teachers[j].name,
+        institution: teachers[j].institution,
+        department: teachers[j].department,
+        numRes: grades.length,
+      };
+    }
 
     res.status(200).json({
       teachers,
