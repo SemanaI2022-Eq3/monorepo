@@ -17,9 +17,35 @@ import ColorSchemeToggle from "./ColorSchemeToggle";
 import { useAuthContext } from "../context/auth-context";
 import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const routes = [
+  {
+    name: "Home",
+    route: "/",
+    hideTop: true,
+  },
+  {
+    name: "Universidades",
+    route: "/",
+  },
+  {
+    name: "Profesores",
+    route: "/teachers",
+  },
+  {
+    name: "Calificar",
+    route: "/qualify",
+  },
+  {
+    name: "Escuela",
+    route: "/school",
+  },
+];
 
 export function Header(props) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElMenu, setAnchorElMenu] = React.useState(null);
   const { user, login, logout } = useAuthContext();
 
   const handleOpenUserMenu = (event) => {
@@ -28,6 +54,15 @@ export function Header(props) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const isMenuOpen = Boolean(anchorElMenu);
+  const openMenu = (event) => {
+    setAnchorElMenu(event.currentTarget);
+  };
+
+  const closeMenu = () => {
+    setAnchorElMenu(null);
   };
 
   return (
@@ -62,30 +97,54 @@ export function Header(props) {
           gap: 1.5,
         }}
       >
-        <Link style={{ textDecoration: "none" }} to={"/qualify"}>
+        <IconButton
+          variant="outlined"
+          sx={{ display: { md: "none" } }}
+          onClick={openMenu}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="nav-menu"
+          anchorEl={anchorElMenu}
+          open={isMenuOpen}
+          onClose={closeMenu}
+        >
+          {routes.map(({ route, name }) => (
+            <MenuItem component={Link} to={route} key={name}>
+              {name}
+            </MenuItem>
+          ))}
+        </Menu>
+
+        <Link style={{ textDecoration: "none" }} to={"/"}>
           <Typography component="h1" fontWeight="xl">
-            Califica Profesores
+            Calificaciones de Profesores
           </Typography>
         </Link>
 
-        <Link
-          style={{ textDecoration: "none", paddingRight: "2%" }}
-          to={"/universities"}
+        <Box
+          sx={{
+            display: {
+              xs: "none",
+              md: "flex",
+            },
+          }}
         >
-          <Typography component="h2" fontWeight="md">
-            Universidades
-          </Typography>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to={"/teachers"}>
-          <Typography component="h2" fontWeight="md">
-            Profesores
-          </Typography>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to={"/school"}>
-          <Typography component="h2" fontWeight="md">
-            Escuelas
-          </Typography>
-        </Link>
+          {routes
+            .filter((item) => item.hideTop !== true)
+            .map(({ name, route }) => (
+              <Link
+                style={{ textDecoration: "none", paddingRight: 14 }}
+                to={route}
+                key={name}
+              >
+                <Typography component="h2" fontWeight="md">
+                  {name}
+                </Typography>
+              </Link>
+            ))}
+        </Box>
       </Box>
 
       <TextField
@@ -103,16 +162,19 @@ export function Header(props) {
           flexBasis: "500px",
           display: {
             xs: "none",
-            sm: "flex",
+            md: "flex",
           },
         }}
       />
+
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           gap: 1.5,
-          width: "340px",
+          width: {
+            xl: "480px",
+          },
           justifyContent: "end",
         }}
       >
