@@ -50,22 +50,22 @@ export default function School() {
               <Typography variant="h5" m={5}>
                 Profesores mejores calificados
               </Typography>
-              {teachers.map(({ name: teacherName, _id: id }) => {
-                console.log(id)
-                return (
-                  <Link to={"/teacher/" + id}>
-                    <Box m={5} sx={{ display: "flex" }} key={teacherName}>
-                      <AccountCircleIcon />
-                      <Box>
-                        <Typography px={12}> {teacherName} </Typography>
-                        <Typography px={12}>
-                          Reseñas {randomNumberInRange(60, 100)}
-                        </Typography>
+              {teachers.map(
+                ({ name: teacherName, _id: id, numRes: nresenas }) => {
+                  console.log(id);
+                  return (
+                    <Link to={"/teacher/" + id}>
+                      <Box m={5} sx={{ display: "flex" }} key={teacherName}>
+                        <AccountCircleIcon />
+                        <Box>
+                          <Typography px={12}> {teacherName} </Typography>
+                          <Typography px={12}>Reseñas {nresenas}</Typography>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Link>
-                )
-              })}
+                    </Link>
+                  );
+                }
+              )}
             </Sheet>
           </Box>
         </Grid>

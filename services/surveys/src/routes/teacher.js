@@ -94,6 +94,8 @@ teachersR.get('/teachers', authRequired, async (_req, res, next) => {
         }
       }
       teachers[j] = {
+        // eslint-disable-next-line no-underscore-dangle
+        _id: teachers[j]._id,
         name: teachers[j].name,
         institution: teachers[j].institution,
         department: teachers[j].department,
