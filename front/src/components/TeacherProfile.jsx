@@ -1,6 +1,6 @@
-import { Typography } from "@mui/joy";
+import { Typography, Card } from "@mui/joy";
 import Sheet, { SheetProps } from "@mui/joy/Sheet";
-import Divider from '@mui/joy/Divider';
+import Divider from "@mui/joy/Divider";
 import { Box, ThemeProvider, createTheme } from "@mui/system";
 import { useParams } from "react-router-dom";
 
@@ -32,7 +32,7 @@ export function TeacherProfile() {
     apellido: "Abasolo Sotres",
     clase: "Publicidad y Mercadotecnia",
     numeroCalificaciones: "5",
-    calificacion: "7.6000",
+    calificacion: "7.6",
   };
   console.log(id);
   return (
@@ -45,9 +45,12 @@ export function TeacherProfile() {
           marginRight: -1,
         }}
       >
-        <Typography  level="h1">{teacher.nombre + " " + teacher.apellido}</Typography>
+        <Typography level="h1">
+          {teacher.nombre + " " + teacher.apellido}
+        </Typography>
         <Divider />
         <Box
+          component="ul"
           color="neutral"
           variant="outlined"
           sx={{
@@ -57,9 +60,46 @@ export function TeacherProfile() {
             marginTop: 2,
             p: 2,
             minHeight: 300,
+            display: "flex",
+            gap: 2,
+            flexWrap: "wrap",
           }}
         >
-          {id}
+          <Card
+            component="li"
+            sx={{
+              minWidth: 200,
+              flexGrow: 1,
+              textAlign: "center",
+              paddingY: 12,
+            }}
+          >
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Calificacion General
+            </Typography>
+            <Typography level="display1">{teacher.calificacion}%</Typography>
+          </Card>
+          <Card
+            component="li"
+            sx={{
+              minWidth: 200,
+              flexGrow: 1,
+              textAlign: "center",
+              paddingY: 5,
+            }}
+          >
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Recomendado
+            </Typography>
+            <Typography level="display1">5.4%</Typography>
+            <Typography level="h2" fontSize="lg" sx={{ mb: 0.5 }}>
+              Dificultad
+            </Typography>
+            <Typography level="display1">4/5</Typography>
+          </Card>
+          <Card component="li" sx={{ minWidth: 300, flexGrow: 3 }}>
+            <Typography>Hello world!</Typography>
+          </Card>
         </Box>
       </Box>
     </ThemeProvider>
