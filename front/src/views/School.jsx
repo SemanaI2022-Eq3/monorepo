@@ -22,6 +22,7 @@ const schoolCals = [
 
 export default function School() {
   const [teachers, setTeachers] = useState([]);
+  const [resenas, setResenas] = useState([]);
 
   React.useEffect(() => {
     axios
@@ -48,14 +49,12 @@ export default function School() {
               <Typography variant="h5" m={5}>
                 Profesores mejores calificados
               </Typography>
-              {teachers.map(({ name: teacherName }) => (
+              {teachers.map(({ name: teacherName, numRes: nresenas }) => (
                 <Box m={5} sx={{ display: "flex" }} key={teacherName}>
                   <AccountCircleIcon />
                   <Box>
                     <Typography px={12}> {teacherName} </Typography>
-                    <Typography px={12}>
-                      Reseñas {randomNumberInRange(60, 100)}
-                    </Typography>
+                    <Typography px={12}>Reseñas {nresenas}</Typography>
                   </Box>
                 </Box>
               ))}
